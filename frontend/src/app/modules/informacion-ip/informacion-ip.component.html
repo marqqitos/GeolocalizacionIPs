@@ -1,0 +1,42 @@
+<mat-form-field class="ml-20 w-200">
+  <mat-label>Ingrese una IP</mat-label>
+  <input matInput type="text" [(ngModel)]="IP">
+  <button mat-button *ngIf="IP" matSuffix mat-icon-button aria-label="Clear" (click)="IP=''">
+    <mat-icon>close</mat-icon>
+  </button>
+</mat-form-field>
+<span class="ml-10">
+    <button mat-flat-button color="primary" (click)="buscarInformacionIP()">Buscar</button>
+</span>
+
+<span class="ml-10">
+    <button mat-flat-button color="accent" (click)="buscarDistanciaMasLejana()">Distancia mas lejana a Buenos Aires</button>
+</span>
+
+<span class="ml-10">
+    <button mat-flat-button color="accent" (click)="buscarDistanciaMasCercana()">Distancia mas cercana a Buenos Aires</button>
+</span>
+
+<span class="ml-10">
+    <button mat-flat-button color="accent" (click)="buscarDistanciaPromedio()">Distancia promedio</button>
+</span>
+
+<mat-list *ngIf="infoIP">
+  <mat-list-item>Nombre: {{infoIP.pais}}</mat-list-item>
+  <mat-divider></mat-divider>
+  <mat-list-item>Codigo ISO: {{infoIP.codigoISOPais}}</mat-list-item>
+  <mat-divider></mat-divider>
+  <mat-list-item>Idiomas: {{infoIP.idiomas}}</mat-list-item>
+  <mat-divider></mat-divider>
+  <mat-list-item>Hora: {{getHoras()}}</mat-list-item>
+  <mat-divider></mat-divider>
+  <mat-list-item>Distancia a Buenos Aires: {{infoIP.distanciaABuenosAires}} km</mat-list-item>
+  <mat-divider></mat-divider>
+  <mat-list-item>Moneda: {{infoIP.moneda}}</mat-list-item>
+  <mat-divider></mat-divider>
+  <mat-list-item>Cotizacion: 1 U$S = {{infoIP.cotizacionDolar | number : '1.2-2'}} {{infoIP.moneda}} </mat-list-item>
+</mat-list>
+
+<mat-list *ngIf="ipDistancia">
+  <mat-list-item>Distancia {{mensajeDistancia}}: {{ipDistancia.distancia | number : '1.2-2'}} km.</mat-list-item>
+</mat-list>

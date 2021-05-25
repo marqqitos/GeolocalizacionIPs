@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using GeolocalizacionIPs.DTOs;
+using GeolocalizacionIPs.DTOs.ServicesExternal;
 using GeolocalizacionIPs.Entities;
 using System;
 using System.Collections.Generic;

@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using GeolocalizacionIPs.Constants;
-using GeolocalizacionIPs.DTOs;
+using GeolocalizacionIPs.DTOs.ServicesExternal;
 using GeolocalizacionIPs.Entities;
 using GeolocalizacionIPs.Exceptions;
 using GeolocalizacionIPs.Services.Interfaces;

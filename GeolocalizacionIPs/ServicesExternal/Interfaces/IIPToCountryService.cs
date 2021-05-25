@@ -1,4 +1,4 @@
-﻿using GeolocalizacionIPs.DTOs;
+﻿using GeolocalizacionIPs.DTOs.ServicesExternal;
 using System;
 using System.Collections.Generic;
 using System.Linq;

@@ -1,5 +1,5 @@
 ﻿using GeolocalizacionIPs.Constants;
-using GeolocalizacionIPs.DTOs;
+using GeolocalizacionIPs.DTOs.ServicesExternal;
 using GeolocalizacionIPs.Exceptions;
 using GeolocalizacionIPs.ServicesExternal.Interfaces;
 using GeolocalizacionIPs.Settings;

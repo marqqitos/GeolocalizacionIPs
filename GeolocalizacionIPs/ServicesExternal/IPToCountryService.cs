@@ -1,5 +1,5 @@
 ﻿using GeolocalizacionIPs.Constants;
-using GeolocalizacionIPs.DTOs;
+using GeolocalizacionIPs.DTOs.ServicesExternal;
 using GeolocalizacionIPs.ServicesExternal.Interfaces;
 using Newtonsoft.Json;
 using System;

@@ -41,3 +41,7 @@
 <mat-list *ngIf="buscarDistancia && ipDistancia">
   <mat-list-item>Distancia {{mensajeDistancia}}: {{ipDistancia.distancia | number : '1.2-2'}} km.</mat-list-item>
 </mat-list>
+
+<mat-list *ngIf="errorBusquedaDistancia">
+  <mat-list-item>Distancia {{mensajeDistancia}} no fue encontrada</mat-list-item>
+</mat-list>

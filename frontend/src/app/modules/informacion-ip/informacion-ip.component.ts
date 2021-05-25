@@ -16,6 +16,7 @@ export class InformacionIPComponent implements OnInit {
   mensajeDistancia: string;
   buscarDistancia: boolean = false;
   malFormatoIP: boolean = false;
+  errorBusquedaDistancia:boolean = false;
 
   constructor(private ipInfoService: InformacionIPService) { }
 
@@ -23,6 +24,7 @@ export class InformacionIPComponent implements OnInit {
   }
 
   buscarInformacionIP() {
+    this.errorBusquedaDistancia = false;
     if(this.validIPaddress(this.IP)) {
       this.malFormatoIP = false;
       this.ipInfoService.getIpInfo(this.IP).subscribe(response => {
@@ -45,27 +47,41 @@ export class InformacionIPComponent implements OnInit {
 
 
   buscarDistanciaMasLejana() {
-    this.buscarDistancia = true;
+    this.setFlagsBusquedaDistancia("mas lejana a Buenos Aires");
     this.ipInfoService.buscarDistanciaMasLejana().subscribe(response => {
       this.ipDistancia = response;
-      this.mensajeDistancia = "mas lejana a Buenos Aires";
+    }, error => {
+      this.setFlagsErrorBusquedaDistancia();
     })
   }
 
   buscarDistanciaMasCercana() {
-    this.buscarDistancia = true;
+    this.setFlagsBusquedaDistancia("mas cercana a Buenos Aires");
     this.ipInfoService.buscarDistanciaMasCercana().subscribe(response => {
       this.ipDistancia = response;
-      this.mensajeDistancia = "mas cercana a Buenos Aires";
+    }, error => {
+      this.setFlagsErrorBusquedaDistancia();
     })
   }
 
   buscarDistanciaPromedio() {
-    this.buscarDistancia = true;
+    this.setFlagsBusquedaDistancia("promedio");
     this.ipInfoService.buscarDistanciaPromedio().subscribe(response => {
       this.ipDistancia = response;
-      this.mensajeDistancia = "promedio";
+    }, error => {
+      this.setFlagsErrorBusquedaDistancia();
     })
+  }
+
+  setFlagsBusquedaDistancia(msjDistancia: string) {
+    this.buscarDistancia = true;
+    this.errorBusquedaDistancia = false;
+    this.mensajeDistancia = msjDistancia;
+  }
+
+  setFlagsErrorBusquedaDistancia() {
+    this.buscarDistancia = false;
+      this.errorBusquedaDistancia = true;
   }
 
   getHoras() {

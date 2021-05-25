@@ -14,6 +14,8 @@ export class InformacionIPComponent implements OnInit {
   infoIP: IPInfo;
   ipDistancia: IPDistancia;
   mensajeDistancia: string;
+  buscarDistancia: boolean = false;
+  malFormatoIP: boolean = false;
 
   constructor(private ipInfoService: InformacionIPService) { }
 
@@ -21,13 +23,15 @@ export class InformacionIPComponent implements OnInit {
   }
 
   buscarInformacionIP() {
-    if(this.validIPaddress) {
+    if(this.validIPaddress(this.IP)) {
+      this.malFormatoIP = false;
       this.ipInfoService.getIpInfo(this.IP).subscribe(response => {
         this.infoIP = response;
+        this.buscarDistancia = false;
       })
     }
     else {
-      
+      this.malFormatoIP = true;
     }
   }
 
@@ -35,11 +39,13 @@ export class InformacionIPComponent implements OnInit {
     if (/^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/.test(ipaddress)) {  
       return (true)  
     }  
-    alert("You have entered an invalid IP address!")  
+    alert("Ingresaste una IP con mal formato!")  
     return (false)  
   } 
 
+
   buscarDistanciaMasLejana() {
+    this.buscarDistancia = true;
     this.ipInfoService.buscarDistanciaMasLejana().subscribe(response => {
       this.ipDistancia = response;
       this.mensajeDistancia = "mas lejana a Buenos Aires";
@@ -47,6 +53,7 @@ export class InformacionIPComponent implements OnInit {
   }
 
   buscarDistanciaMasCercana() {
+    this.buscarDistancia = true;
     this.ipInfoService.buscarDistanciaMasCercana().subscribe(response => {
       this.ipDistancia = response;
       this.mensajeDistancia = "mas cercana a Buenos Aires";
@@ -54,6 +61,7 @@ export class InformacionIPComponent implements OnInit {
   }
 
   buscarDistanciaPromedio() {
+    this.buscarDistancia = true;
     this.ipInfoService.buscarDistanciaPromedio().subscribe(response => {
       this.ipDistancia = response;
       this.mensajeDistancia = "promedio";

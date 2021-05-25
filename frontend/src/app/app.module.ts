@@ -8,6 +8,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatListModule } from '@angular/material/list';
 import { MatButtonModule } from '@angular/material/button';
+// import { Mate } from '@angular/material/error';
 
 import { InformacionIPComponent } from './modules/informacion-ip/informacion-ip.component';
 import { FormsModule } from '@angular/forms';

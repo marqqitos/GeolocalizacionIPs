@@ -14,3 +14,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .center {
     text-align: center;
 }
+
+.colorRed {
+    color:red !important;
+}

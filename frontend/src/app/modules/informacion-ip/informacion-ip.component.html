@@ -1,10 +1,11 @@
 <mat-form-field class="ml-20 w-200">
   <mat-label>Ingrese una IP</mat-label>
-  <input matInput type="text" [(ngModel)]="IP">
+  <input matInput type="text" [(ngModel)]="IP" name="inputInfoIP" #inputInfoIP="ngModel">
   <button mat-button *ngIf="IP" matSuffix mat-icon-button aria-label="Clear" (click)="IP=''">
     <mat-icon>close</mat-icon>
   </button>
 </mat-form-field>
+
 <span class="ml-10">
     <button mat-flat-button color="primary" (click)="buscarInformacionIP()">Buscar</button>
 </span>
@@ -21,7 +22,7 @@
     <button mat-flat-button color="accent" (click)="buscarDistanciaPromedio()">Distancia promedio</button>
 </span>
 
-<mat-list *ngIf="infoIP">
+<mat-list *ngIf="infoIP && !buscarDistancia">
   <mat-list-item>Nombre: {{infoIP.pais}}</mat-list-item>
   <mat-divider></mat-divider>
   <mat-list-item>Codigo ISO: {{infoIP.codigoISOPais}}</mat-list-item>
@@ -37,6 +38,6 @@
   <mat-list-item>Cotizacion: 1 U$S = {{infoIP.cotizacionDolar | number : '1.2-2'}} {{infoIP.moneda}} </mat-list-item>
 </mat-list>
 
-<mat-list *ngIf="ipDistancia">
+<mat-list *ngIf="buscarDistancia && ipDistancia">
   <mat-list-item>Distancia {{mensajeDistancia}}: {{ipDistancia.distancia | number : '1.2-2'}} km.</mat-list-item>
 </mat-list>

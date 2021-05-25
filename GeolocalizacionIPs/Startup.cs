@@ -43,7 +43,9 @@ namespace GeolocalizacionIPs
             services.AddCors();
             services.AddControllers();
 
-            services.AddEntityFrameworkNpgsql().AddDbContext<GeolocalizacionIPsContext>(opt => opt.UseNpgsql(Configuration.GetConnectionString("GeolocalizacionIPsConnectionString")));
+            var connectionString = Environment.GetEnvironmentVariable("DB_CONNECTION_STRING");
+
+            services.AddEntityFrameworkNpgsql().AddDbContext<GeolocalizacionIPsContext>(opt => opt.UseNpgsql(connectionString, providerOptions => providerOptions.EnableRetryOnFailure(5)));
             var mapperConfig = new MapperConfiguration(mc =>
             {
                 mc.AddProfile(new IPInfoMapping());

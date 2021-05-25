@@ -71,7 +71,7 @@ namespace GeolocalizacionIPs.Controllers
             }
             else
             {
-                return NotFound("La distancia mas lejana a Buenos Aires no fue encontrada.");
+                return NotFound("La distancia mas cercana a Buenos Aires no fue encontrada.");
             }
         }
 

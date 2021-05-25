@@ -60,23 +60,28 @@ namespace GeolocalizacionIPs.Services
         {
             var allInfos = await _ipInfoRepository.GetDistanciaPromedio();
 
-            var sumaDistanciaPorInvocaciones = 0d;
-            var sumaInvocaciones = 0d;
-
-            foreach(var info in allInfos)
+            if(allInfos.Count > 0)
             {
-                sumaDistanciaPorInvocaciones += info.DistanciaABuenosAires * info.Invocaciones;
-                sumaInvocaciones += info.Invocaciones;
+                var sumaDistanciaPorInvocaciones = 0d;
+                var sumaInvocaciones = 0d;
+
+                foreach (var info in allInfos)
+                {
+                    sumaDistanciaPorInvocaciones += info.DistanciaABuenosAires * info.Invocaciones;
+                    sumaInvocaciones += info.Invocaciones;
+                }
+
+                var distanciaPromedio = sumaDistanciaPorInvocaciones / sumaInvocaciones;
+
+                var distanciaDTO = new IPDistanciaDTO()
+                {
+                    Distancia = distanciaPromedio
+                };
+
+                return distanciaDTO;
             }
 
-            var distanciaPromedio = sumaDistanciaPorInvocaciones / sumaInvocaciones;
-
-            var distanciaDTO = new IPDistanciaDTO()
-            {
-                Distancia = distanciaPromedio
-            };
-
-            return distanciaDTO;
+            return null;
         }
     }
 }

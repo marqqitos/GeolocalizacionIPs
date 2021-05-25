@@ -38,11 +38,11 @@ namespace GeolocalizacionIPs.Repositories
         {
             if(masCercana)
             {
-                return await _context.IPInfos.OrderBy(d => d.DistanciaABuenosAires).FirstAsync();
+                return await _context.IPInfos.OrderBy(d => d.DistanciaABuenosAires).FirstOrDefaultAsync();
             }
             else
             {
-                return await _context.IPInfos.OrderByDescending(d => d.DistanciaABuenosAires).FirstAsync();
+                return await _context.IPInfos.OrderByDescending(d => d.DistanciaABuenosAires).FirstOrDefaultAsync();
             }
         }
 
